@@ -1,0 +1,32 @@
+[core]
+	excludesFile = /Users/sai.suram/.gitignore
+[user]
+	name = Sai Teja Pratap
+	email = sai.teja.pratap@foo.bar
+[diff]
+	tool = vimdiff3
+[format]
+	# git log format.
+	pretty = format:%C(yellow)%h %C(magenta)%>(8)%ad %Cgreen%<(7)%aN%Cred%d %Creset%s
+[log]
+	date = short
+[alias]
+	co = checkout --no-guess
+    # green(date) red(commit) yellow-bold(branch_name) subject - bold(author) 
+	br = for-each-ref \
+	       --sort=-committerdate refs/heads/ \
+	       --format='%(color:green)%(committerdate:short)%(color:reset) %(color:red)%(objectname:short)%(color:reset) %(HEAD)%(color:yellow)%(color:bold)%(refname:short)%(color:reset) %(contents:subject) - %(color:bold)%(authorname)%(color:reset)'
+	st = status
+	# diff with only file names. 
+	fdiff = diff --name-only
+[help]
+	# TODO(dotslash): I probably dont need this. Consider removing this.
+	autocorrect = 1
+[grep]
+    lineNumber = true
+# TODO(dotslash): What is this?
+[filesystem "Oracle Corporation|1.8.0_131|/dev/disk1s1"]
+	timestampResolution = 1002 milliseconds
+	minRacyThreshold = 0 nanoseconds
+[github]
+	user = dotslash

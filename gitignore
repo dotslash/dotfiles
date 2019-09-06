@@ -1,0 +1,7 @@
+.tags*
+*swp
+*.log
+.vscode
+bazel-*
+target*
+.idea*
