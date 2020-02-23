@@ -26,3 +26,5 @@ rsync /Users/dotslash/.vimrc_1582496367.598279 /Users/dotslash/.vimrc && rsync /
 2. Run `python setup.py`. 
    - If you don't like the desired outcome, run the provided bash command in the output. 
    - Why `rsync`? : Because I symlink from the git repo to appropriate dotfiles, doing a mv/cp might not work as you think. It will change the files in git repo as well.
+   - Why `ln -s` and not `cp` from the git repo? : Because I want to keep the make sure changes in the git repo will reflect into the dot files.
+     - TODO(dotslash): Consider adding a way to sever the link between the git repo the dotfiles.
