@@ -3,7 +3,10 @@ source /usr/local/etc/bash_completion.d/git-prompt.sh
 source /usr/local/lib/bazel/bin/bazel-complete.bash
 # Add custom bashrc here. Ignore the failure if the the custom script 
 # does not exist.
-source ~/.custom_bashrc.sh 2>/dev/null || true
+# If there is a DOTFILES_GIT_REPO/custom_bashrc.sh, then that will be symlinked
+# to .custom_bashrc.sh. This is done to make it "easy" to modify the custom 
+# bashrc file - It's painful to find and edit hidden files in osx :/ 
+source .custom_bashrc.sh 2>/dev/null || true
 
 # returns '(master)'
 parse_git_branch() {
@@ -15,7 +18,7 @@ parse_git_branch() {
 get_time() { date +"%T"; }
 # PS1 with git info. Example:
 # >12:27:11 ~/dotfiles (master)$
-export PS1=">\$(get_time) \[\033[32m\]\w\[\033[33m\]\$ (parse_git_branch)\[\033[00m\]$ "
+export PS1=">\$(get_time) \[\033[32m\]\w\[\033[33m\] \$(parse_git_branch)\[\033[00m\]$ "
 alias ls='ls -G'
 
 

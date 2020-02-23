@@ -44,14 +44,18 @@ def create_mapping() -> Dict[str, str]:
   bash_rc_loc = '~/.bashrc'
   if sys.platform == 'darwin':
       bash_rc_loc = '~/.bash_profile'
-
   file_dir = Path(__file__).resolve().parent
-  return {
+  ret = {
     f'{file_dir}/vimrc': '~/.vimrc',
     f'{file_dir}/bashrc.sh': bash_rc_loc,
     f'{file_dir}/gitignore': '~/.gitignore',
     f'{file_dir}/gitconfig': '~/.gitconfig'
   }
+  custom_bashrc = f"{file_dir}/custom_bashrc.sh"
+  if Path(custom_bashrc).exists():
+  	ret[custom_bashrc] = '~/.custom_bashrc.sh'
+  return ret
+
 
 if __name__ == '__main__':
   mapping = create_mapping()
@@ -59,6 +63,6 @@ if __name__ == '__main__':
   undo_script = backup_files(mapping.values())
   link_files(mapping)
   print("====================")
-  print("If you dont like this outcome, run the following in bash:")
+  print("If you dont like this outcome, run the following in bash to undo:")
   print(undo_script)
   print("====================")
