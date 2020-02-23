@@ -9,16 +9,22 @@ import time
 
 DRY_RUN = len(sys.argv) > 1 and sys.argv[1] == "dry"
 
-def backup_files(paths: Iterable[str]):
+# Backs up the files and returns a script string to undo the changes 
+# in this script 
+def backup_files(paths: Iterable[str]) -> str:
   now = time.time()
+  undo_sript_lines = []
   for p_str in paths:
     p = Path(p_str).expanduser()
     if not p.exists():
+      undo_sript_lines.append(f'rm {p}')
       continue
     backup_p = Path(f'{p}_{now}')
     if not DRY_RUN:
       backup_p.write_text(p.read_text())
     print(f"Backed up {p} to {backup_p}")
+    undo_sript_lines.append(f'rsync {backup_p} {p}')
+  return ' && '.join(undo_sript_lines)
 
 def link_files(mapping: Dict[str, str]):
   for src, dst in mapping.items():
@@ -27,10 +33,11 @@ def link_files(mapping: Dict[str, str]):
     if dst_path.exists():
       if not DRY_RUN:
         dst_path.unlink()
-      print(f"Deleted dst_path")
     if not DRY_RUN:
-      Path(src).symlink_to(str(dst_path))
-    print(f"Synlinked {src} to {dst_path}")
+      print(dst_path.exists())
+      Path(dst_path).symlink_to(str(src))
+    print(f"Synlinked {dst_path} to {src}")
+
 
 
 def create_mapping() -> Dict[str, str]:
@@ -49,5 +56,9 @@ def create_mapping() -> Dict[str, str]:
 if __name__ == '__main__':
   mapping = create_mapping()
   print(f"Config mappings to set: \n{pformat(mapping)}")
-  backup_files(mapping.values())
+  undo_script = backup_files(mapping.values())
   link_files(mapping)
+  print("====================")
+  print("If you dont like this outcome, run the following in bash:")
+  print(undo_script)
+  print("====================")
