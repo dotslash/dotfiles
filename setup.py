@@ -34,7 +34,6 @@ def link_files(mapping: Dict[str, str]):
       if not DRY_RUN:
         dst_path.unlink()
     if not DRY_RUN:
-      print(dst_path.exists())
       Path(dst_path).symlink_to(str(src))
     print(f"Synlinked {dst_path} to {src}")
 
