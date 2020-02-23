@@ -1,6 +1,5 @@
 source /usr/local/etc/bash_completion.d/git-completion.bash
 source /usr/local/etc/bash_completion.d/git-prompt.sh
-source /usr/local/lib/bazel/bin/bazel-complete.bash
 # Add custom bashrc here. Ignore the failure if the the custom script 
 # does not exist.
 # If there is a DOTFILES_GIT_REPO/custom_bashrc.sh, then that will be symlinked
@@ -64,7 +63,7 @@ confirm() {
 # Expects python3
 alias urldecode='python -c "import urllib.parse, sys; print(urllib.parse.unquote(sys.argv[1] if len(sys.argv) > 1 else sys.stdin.read()[0:-1]))"'
 
-
+# https://github.com/dotslash/recent2: Logs bash history to an sqlite file
 export PROMPT_COMMAND='log-recent -r $? -c "$(HISTTIMEFORMAT= history 1)" -p $$'
 alias grep='grep --color'
 alias sqlite3='sqlite3 -column -header'
