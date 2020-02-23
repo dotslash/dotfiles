@@ -3,7 +3,7 @@ Supports the following config files for bashrc (or bash_profile), gitconfig, git
 
 ### Usage
 
-1. Do a try run to see if things make sense. 
+1. Do a dry run to see if things make sense. 
 ```sh
 > python setup.py dry
 Config mappings to set:
