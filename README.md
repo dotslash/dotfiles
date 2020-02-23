@@ -1,5 +1,5 @@
 # dotfiles
-Supports the following config files for bashrc (or bash_profile), gitconfig, gitignore and vimrc.
+Supports the config files for bashrc (or bash_profile), gitconfig, gitignore and vimrc.
 
 ### Usage
 
