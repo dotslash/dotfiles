@@ -2,10 +2,6 @@ source /usr/local/etc/bash_completion.d/git-completion.bash
 source /usr/local/etc/bash_completion.d/git-prompt.sh
 # Add custom bashrc here. Ignore the failure if the the custom script 
 # does not exist.
-# If there is a DOTFILES_GIT_REPO/custom_bashrc.sh, then that will be symlinked
-# to .custom_bashrc.sh. This is done to make it "easy" to modify the custom 
-# bashrc file - It's painful to find and edit hidden files in osx :/ 
-source .custom_bashrc.sh 2>/dev/null || true
 
 # returns '(master)'
 parse_git_branch() {
@@ -93,8 +89,17 @@ fi
 unset __conda_setup
 # <<< conda init <<<
 
+# If there is a DOTFILES_GIT_REPO/custom_bashrc.sh, then that will be symlinked
+# to .custom_bashrc.sh. This is done to make it "easy" to modify the custom 
+# bashrc file - It's painful to find and edit hidden files in osx :/ 
+# This is done towards the end of the file to ensure things like
+# export PS1="foo-$PS1" to work. The custom_bashrc.sh can build on top of what
+# is done here.
+source ~/.custom_bashrc.sh 2>/dev/null || true
 
-# TODO(dotslash): Not sure why I added this.
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+
+
+# Added sdkman to install scala.
+# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/sai.suram/.sdkman"
 [[ -s "/Users/sai.suram/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/sai.suram/.sdkman/bin/sdkman-init.sh"
