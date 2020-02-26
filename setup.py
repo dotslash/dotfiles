@@ -62,6 +62,6 @@ if __name__ == '__main__':
   undo_script = backup_files(mapping.values())
   link_files(mapping)
   print("====================")
-  print("If you dont like this outcome, run the following in bash to undo:")
+  print("If you don't like this outcome, run the following in bash to undo:")
   print(undo_script)
   print("====================")

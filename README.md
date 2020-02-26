@@ -20,11 +20,11 @@ Synlinked /Users/dotslash/.bash_profile to /Users/dotslash/dotfiles/bashrc.sh
 Synlinked /Users/dotslash/.gitignore to /Users/dotslash/dotfiles/gitignore
 Synlinked /Users/dotslash/.gitconfig to /Users/dotslash/dotfiles/gitconfig
 ====================
-If you dont like this outcome, run the following in bash:
+If you don't like this outcome, run the following in bash to undo:
 rsync /Users/dotslash/.vimrc_1582496367.598279 /Users/dotslash/.vimrc && rsync /Users/dotslash/.bash_profile_1582496367.598279 /Users/dotslash/.bash_profile && rsync /Users/dotslash/.gitignore_1582496367.598279 /Users/dotslash/.gitignore && rsync /Users/dotslash/.gitconfig_1582496367.598279 /Users/dotslash/.gitconfig
 ```
 2. Run `python setup.py`. 
-   - If you don't like the desired outcome, run the provided bash command in the output. 
+   - If you don't like the desired outcome, run the provided bash command in the output to undo. 
    - Why `rsync`? : Because I symlink from the git repo to appropriate dotfiles, doing a mv/cp might not work as you think. It will change the files in git repo as well.
-   - Why `ln -s` and not `cp` from the git repo? : Because I want to keep the make sure changes in the git repo will reflect into the dot files.
+   - Why `ln -s` and not `cp` from the git repo? : Because I want to make sure changes in the git repo will reflect into the dot files.
      - TODO(dotslash): Consider adding a way to sever the link between the git repo the dotfiles.
