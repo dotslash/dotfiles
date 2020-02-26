@@ -93,14 +93,21 @@ alias sqlite3='sqlite3 -column -header'
 HISTTIMEFORMAT="%d/%m/%y %T "
 
 
+# Note:
+# behaves "wrongly"
+# - [ -d "~/foo" ] : will always be false
+# behaves "correctly"
+# - [ -d "/foo" ]
+# - [ -d "~/$foo" ]
+# - [ -d /no/quotes ]
 CONDA_BASE=""
-if [ -d "/opt/miniconda3" ]; then
+if [ -d /opt/miniconda3 ]; then
   CONDA_BASE="/opt/miniconda3"
-elif [ -d "~/opt/miniconda3"]; then
-  CONDA_BASE=~/opt/miniconda3
+elif [ -d ~/opt/miniconda3 ]; then
+   CONDA_BASE="~/opt/miniconda3"
 fi
 
-if [[ CONDA_BASE ]]; then
+if [[ $CONDA_BASE ]]; then
   # added by Miniconda3 4.7.12 installer (modified by me)
   # >>> conda init >>>
   # !! Contents within this block are managed by 'conda init' !!
