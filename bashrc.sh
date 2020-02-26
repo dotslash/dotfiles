@@ -92,6 +92,9 @@ alias grep='grep --color'
 alias sqlite3='sqlite3 -column -header'
 HISTTIMEFORMAT="%d/%m/%y %T "
 
+get_conda_env() {
+  basename $CONDA_DEFAULT_ENV
+}
 
 # Note:
 # behaves "wrongly"
@@ -129,7 +132,7 @@ if [[ $CONDA_BASE ]]; then
   fi
   unset __conda_setup
   # <<< conda init <<<
-  export PS1="${PINK}(\$(basename $CONDA_DEFAULT_ENV))${NOCOLOR} $PS1"
+  export PS1="${PINK}(\$(get_conda_env))${NOCOLOR} $PS1"
 fi
 
 # If there is a DOTFILES_GIT_REPO/custom_bashrc.sh, then that will be symlinked
