@@ -93,7 +93,9 @@ alias sqlite3='sqlite3 -column -header'
 HISTTIMEFORMAT="%d/%m/%y %T "
 
 get_conda_env() {
-  basename $CONDA_DEFAULT_ENV
+  if [[ -n $CONDA_DEFAULT_ENV ]]; then
+    basename $CONDA_DEFAULT_ENV
+  fi
 }
 
 # Note:
@@ -101,13 +103,13 @@ get_conda_env() {
 # - [ -d "~/foo" ] : will always be false
 # behaves "correctly"
 # - [ -d "/foo" ]
-# - [ -d "~/$foo" ]
+# - [ -d "~/${x}/foo" ]
 # - [ -d /no/quotes ]
 CONDA_BASE=""
 if [ -d /opt/miniconda3 ]; then
   CONDA_BASE="/opt/miniconda3"
-elif [ -d ~/opt/miniconda3 ]; then
-   CONDA_BASE="~/opt/miniconda3"
+elif [ -d "$HOME/opt/miniconda3" ]; then
+   CONDA_BASE="$HOME/opt/miniconda3"
 fi
 
 if [[ $CONDA_BASE ]]; then
