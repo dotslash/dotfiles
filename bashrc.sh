@@ -147,6 +147,8 @@ if [ -d /opt/miniconda3 ]; then
   CONDA_BASE="/opt/miniconda3"
 elif [ -d "$HOME/opt/miniconda3" ]; then
    CONDA_BASE="$HOME/opt/miniconda3"
+elif [ -d "$HOME/miniconda3" ]; then
+   CONDA_BASE="$HOME/miniconda3"
 fi
 
 if [[ $CONDA_BASE ]]; then
