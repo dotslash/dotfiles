@@ -5,3 +5,4 @@
 bazel-*
 target*
 .idea*
+.DS_Store
