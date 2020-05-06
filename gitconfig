@@ -1,5 +1,6 @@
 [core]
-	excludesFile = /Users/sai.suram/.gitignore
+	excludesFile = $HOME/.gitignore
+	hooksPath = $HOME/.databricks/githooks
 [user]
 	name = Sai Teja Pratap
 	email = sai.teja.pratap@foo.bar
