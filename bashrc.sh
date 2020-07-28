@@ -1,5 +1,7 @@
-source /usr/local/etc/bash_completion.d/git-completion.bash
-source /usr/local/etc/bash_completion.d/git-prompt.sh
+source /usr/local/etc/bash_completion.d/git-completion.bash > /dev/null 2>&1
+source /usr/share/bash-completion/completions/git > /dev/null 2>&1
+source /usr/local/etc/bash_completion.d/git-prompt.sh > /dev/null 2>&1
+source /etc/bash_completion.d/git-prompt> /dev/null 2>&1
 # Add custom bashrc here. Ignore the failure if the the custom script 
 # does not exist.
 
